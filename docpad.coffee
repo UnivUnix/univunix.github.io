@@ -68,9 +68,9 @@ docpadConfig = {
 
   # Plugins configuration
   plugins:
-    ghpages:
-      deployRemote: 'origin'
-		  deployBranch: 'master'
+  	ghpages:
+  		deployRemote: 'origin'
+  		deployBranch: 'master'
 
     less:
       referencesOthers: true
@@ -79,22 +79,6 @@ docpadConfig = {
         compress: true,
         sourceMap:
           sourceMapFileInline: true
-
-  #Event configuration
-  events:
-    # Server Extend
-    # Used to add our own custom routes to the server before the docpad routes are added
-    serverExtend: (opts) ->
-      # Extract the server from the options
-      {server} = opts
-      docpad = @docpad
-
-      # As we are now running in an event,
-      # ensure we are using the latest copy of the docpad configuraiton
-      # and fetch our urls from it
-      latestConfig = docpad.getConfig()
-      oldUrls = latestConfig.templateData.site.oldUrls or []
-      newUrl = latestConfig.templateData.site.url
 }
 
 # Export the DocPad Configuration
