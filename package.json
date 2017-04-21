@@ -1,0 +1,29 @@
+{
+  "name": "univunix-software",
+  "version": "1.0.0",
+  "description": "UnivUnix software website",
+  "main": "index.js",
+  "dependencies": {
+    "docpad": "~6.79.4",
+    "docpad-plugin-cleanurls": "~2.10.0",
+    "docpad-plugin-copy": "~2.1.3",
+    "docpad-plugin-ect": "~2.0.1",
+    "docpad-plugin-ghpages": "~2.6.1",
+    "docpad-plugin-less": "~2.5.1",
+    "docpad-plugin-marked": "~2.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "docpad run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnivUnix/univunix.github.io.git"
+  },
+  "author": "UnivUnix",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/UnivUnix/univunix.github.io/issues"
+  },
+  "homepage": "https://github.com/UnivUnix/univunix.github.io#readme"
+}
