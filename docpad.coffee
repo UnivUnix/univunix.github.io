@@ -29,6 +29,13 @@ docpadConfig = {
         "https://fonts.googleapis.com/css?family=Lato:300,400,700"
       ]
       scripts: [
+        "/vendor/jquery-min.js",
+        "/vendor/bootstrap/js/bootstrap-min.js",
+        "/vendor/jquery-scrollTo/jquery-scrollTo-min.js",
+        "/vendor/jquery-match-height/jquery-matchHeight-min.js",
+        "/vendor/lightbox/ekko-lightbox-min.js",
+        "/vendor/prism/prism-min.js",
+        "/scripts/main.js"
       ]
 
     # Helper functions
