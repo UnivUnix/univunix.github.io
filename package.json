@@ -10,7 +10,8 @@
     "docpad-plugin-ect": "~2.0.1",
     "docpad-plugin-ghpages": "~2.6.1",
     "docpad-plugin-less": "~2.5.1",
-    "docpad-plugin-marked": "~2.4.0"
+    "docpad-plugin-marked": "~2.4.0",
+    "docpad-plugin-moment": "~2.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

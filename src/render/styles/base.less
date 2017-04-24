@@ -218,6 +218,9 @@ select {
         margin-top: 0;
         margin-bottom: 0;
         a {
+            &:hover {
+              color: lighten(@color-primary, 10%);
+            }
             text-decoration: none;
         }
         img {
@@ -279,14 +282,14 @@ select {
     margin-bottom: 0;
     padding: 0;
     li {
-        color: rgba(256, 256, 256, 0.5);
+        color: rgba(0, 0, 0, 0.5);
         &.active {
-            color: rgba(256, 256, 256, 0.5);
+            color: rgba(0, 0, 0, 0.5);
         }
         a {
-            color: rgba(256, 256, 256, 0.5);
+            color: rgba(0, 0, 0, 0.5);
             &:hover {
-                color: #fff;
+                color: darken(@color-primary, 10%);
             }
         }
     }

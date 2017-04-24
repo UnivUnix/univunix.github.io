@@ -59,6 +59,10 @@ docpadConfig = {
     getFullURL: (relativeURL) ->
       @formatURL(@site.url + relativeURL)
 
+    getBreadcrumb: (url) ->
+      if(url.search(/projects\/list/) != -1)
+        return '<li><a href="/">Home</a></li><li class="active">List of projects</li>'
+
   #Environment configuration
   localeCode: 'en'
 
@@ -78,6 +82,12 @@ docpadConfig = {
   	ghpages:
   		deployRemote: 'origin'
   		deployBranch: 'master'
+
+    moment:
+      formats: [
+        {raw: 'date', format: 'DD/MM/YYYY', formatted: 'humanDate'}
+        {raw: 'date', format: 'YYYY-MM-DD', formatted: 'computerDate'}
+      ]
 
     less:
       referencesOthers: true
