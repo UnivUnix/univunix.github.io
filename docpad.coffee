@@ -1,6 +1,9 @@
 # DocPad Configuration File
 # http://docpad.org/docs/config
 
+# Requires
+moment = require('moment')
+
 # Define the DocPad Configuration
 docpadConfig = {
   regenerateDelay: 1000
@@ -56,12 +59,15 @@ docpadConfig = {
       .replace(/\s/g, "%20")
       .replace(/&/g, "&amp;")
 
+    # Format the passed date, by default format like: Thursday, November 29 2012 3:53 PM
+    formatDate: (date,format='LLLL') -> return moment(date).format(format)
+
     getFullURL: (relativeURL) ->
       @formatURL(@site.url + relativeURL)
 
     getBreadcrumb: (url) ->
-      if(url.search(/projects\/list/) != -1)
-        return '<li><a href="/">Home</a></li><li class="active">List of projects</li>'
+      if(url.search(/projects\/docpad-plugin-api/) != -1)
+        return '<li><a href="/">Home</a></li><li class="active">Docpad api plugin</li>'
 
   #Environment configuration
   localeCode: 'en'
@@ -82,12 +88,6 @@ docpadConfig = {
   	ghpages:
   		deployRemote: 'origin'
   		deployBranch: 'master'
-
-    moment:
-      formats: [
-        {raw: 'date', format: 'DD/MM/YYYY', formatted: 'humanDate'}
-        {raw: 'date', format: 'YYYY-MM-DD', formatted: 'computerDate'}
-      ]
 
     less:
       referencesOthers: true

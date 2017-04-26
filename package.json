@@ -11,7 +11,8 @@
     "docpad-plugin-ghpages": "~2.6.1",
     "docpad-plugin-less": "~2.5.1",
     "docpad-plugin-marked": "~2.4.0",
-    "docpad-plugin-moment": "~2.0.2"
+    "docpad-plugin-moment": "~2.0.2",
+    "moment": "^2.18.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/UnivUnix/univunix.github.io/issues"
   },
-  "homepage": "https://github.com/UnivUnix/univunix.github.io#readme"
+  "homepage": "https://github.com/UnivUnix/univunix.github.io#readme",
+  "devDependencies": {}
 }

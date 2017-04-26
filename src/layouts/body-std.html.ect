@@ -10,7 +10,7 @@ layout: 'default'
               <h1 class="logo">
                 <a href="/">
                   <img src="/icons/logo2016.svg"/>
-                  <span>Univ</span><span class="text-bold">Unix</span> <span class="text-bold">Docs</span>
+                  <span>Univ</span><span class="text-bold">Unix</span> <span>Docs</span>
                 </a>
               </h1>
           </div><!--//branding-->
@@ -22,12 +22,12 @@ layout: 'default'
     <div class="doc-wrapper">
         <div class="container">
             <div id="doc-header" class="doc-header text-center">
-                <h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Components</h1>
+                <h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> <%= @document.title %></h1>
                 <div class="meta">
                   <i class="fa fa-clock-o"></i>
                   Last updated:
-                  <time datetime="<%= @document.computerDate %>">
-                    <%= @document.humanDate %>
+                  <time datetime="<%= @formatDate(@document.date, "YYYY-MM-DD") %>">
+                    <%= @formatDate(@document.date) %>
                   </time>
                 </div>
             </div><!--//doc-header-->

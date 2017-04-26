@@ -1,6 +1,10 @@
 /* ======= Base ======= */
+html {
+  font-family: 'Lato', sans-serif !important;
+}
+
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif !important;
     color: @text-color;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
@@ -45,7 +49,7 @@ a {
 
 code {
     background: #222;
-    color: #fff;
+    color: @natural-white;
     font-size: 14px;
     font-weight: bold;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -67,10 +71,10 @@ code {
 .btn-primary, a.btn-primary {
 	background: @color-primary;
 	border: 1px solid @color-primary;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-primary, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-primary, 5%);
 	}
 }
@@ -78,16 +82,16 @@ code {
 .btn-green, a.btn-green {
     background: @color-green;
 	border: 1px solid @color-green;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-green, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-green, 5%);
 	}
 	.body-green & {
-    	color: #fff !important;
+    	color: @natural-white !important;
     	&:hover, &:focus, &:active, &.active, &.hover {
-        	color: #fff !important;
+        	color: @natural-white !important;
     	}
 	}
 }
@@ -95,10 +99,10 @@ code {
 .btn-blue, a.btn-blue {
     background: @color-blue;
 	border: 1px solid @color-blue;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-blue, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-blue, 5%);
 	}
 }
@@ -106,10 +110,10 @@ code {
 .btn-orange, a.btn-orange {
     background: @color-orange;
 	border: 1px solid @color-orange;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-orange, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-orange, 5%);
 	}
 }
@@ -117,10 +121,10 @@ code {
 .btn-red, a.btn-red {
     background: @color-red;
 	border: 1px solid @color-red;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-red, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-red, 5%);
 	}
 }
@@ -128,10 +132,10 @@ code {
 .btn-pink, a.btn-pink {
     background: @color-pink;
 	border: 1px solid @color-pink;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-pink, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-pink, 5%);
 	}
 
@@ -140,10 +144,10 @@ code {
 .btn-purple, a.btn-purple {
     background: @color-purple;
 	border: 1px solid @color-purple;
-	color: #fff !important;
+	color: @natural-white !important;
 	&:hover, &:focus, &:active, &.active, &.hover {
 		background: darken(@color-purple, 5%);
-		color: #fff !important;
+		color: @natural-white !important;
 		border: 1px solid darken(@color-purple, 5%);
 	}
 }
@@ -176,7 +180,7 @@ select {
 
 #topcontrol {
     background: @color-primary;
-    color: #fff;
+    color: @natural-white;
     text-align: center;
     display: inline-block;
     width: 35px;
@@ -207,10 +211,11 @@ select {
     border-top: 5px solid @color-primary;
     padding: 30px 0;
     a {
-        color: #fff;
+        color: @natural-white;
     }
 }
 .branding {
+  font-family: 'Lato', sans-serif;
     text-transform: uppercase;
     margin-bottom: 10px;
     .logo {
@@ -219,7 +224,7 @@ select {
         margin-bottom: 0;
         a {
             &:hover {
-              color: lighten(@color-primary, 10%);
+              color: @natural-white;
             }
             text-decoration: none;
         }
@@ -249,9 +254,13 @@ select {
             color: @color-purple;
         }
     }
+    .text-light {
+      font-weight: 100;
+      color: inherit;
+    }
     .text-bold {
-        font-weight: 800;
-        color: #fff;
+        font-weight: 700;
+        color: inherit;
     }
     .icon {
         font-size: 24px;

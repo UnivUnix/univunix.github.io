@@ -5,7 +5,7 @@
         color: rgba(256, 256, 256, 0.85);
         padding: 60px 0;
         a {
-            color: #fff;
+            color: @natural-white;
         }
     }
     .branding {
@@ -20,9 +20,13 @@
                 height: 3em;
             }
         }
+        .text-light {
+          font-weight: 100;
+          color: inherit;
+        }
         .text-bold {
-            font-weight: 800;
-            color: #fff;
+            font-weight: 700;
+            color: inherit;
         }
         .icon {
             font-size: 32px;
@@ -105,7 +109,7 @@
     }
     .item-inner {
         padding: 45px 30px;
-        background:#fff;
+        background:@natural-white;
         position: relative;
         border: 1px solid @divider;
         .border-radius(4px);
