@@ -82,6 +82,10 @@ docpadConfig = {
     production:
       maxAge: false
       hostname: 'software.univunix.com'
+    static:
+      plugins:
+        cleanurls:
+          static: false
 
   # Plugins configuration
   plugins:
