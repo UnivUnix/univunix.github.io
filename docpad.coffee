@@ -43,7 +43,7 @@ docpadConfig = {
 
     # Helper functions
     getDocumentTitle: ->
-      if @document.title
+      if @document.title and not @document.isIndex
         "#{@document.title} | #{@site.title}"
       else
         @site.title
@@ -65,9 +65,8 @@ docpadConfig = {
     getFullURL: (relativeURL) ->
       @formatURL(@site.url + relativeURL)
 
-    getBreadcrumb: (url) ->
-      if(url.search(/projects\/docpad-plugin-api/) != -1)
-        return '<li><a href="/">Home</a></li><li class="active">Docpad api plugin</li>'
+    getBreadcrumb: () ->
+      '<li><a href="' + @getFullURL("/") + '">Home</a></li><li class="active">' + @document.title + '</li>'
 
   #Environment configuration
   localeCode: 'en'
@@ -100,6 +99,15 @@ docpadConfig = {
         compress: true,
         sourceMap:
           sourceMapFileInline: true
+
+  collections:
+    projects: ->
+      @getCollection('documents')
+      .findAllLive({relativeOutDirPath: /projects[\/\\]\w+/}, [{date: -1}])
+      .on "add", (model) ->
+        model.setMetaDefaults({
+          layout: "body-std"
+        })
 }
 
 # Export the DocPad Configuration
