@@ -103,7 +103,7 @@ docpadConfig = {
   collections:
     projects: ->
       @getCollection('documents')
-      .findAllLive({relativeOutDirPath: /projects[\/\\]\w+/}, [{date: -1}])
+      .findAllLive({relativeOutDirPath: /projects/}, [{date: -1}])
       .on "add", (model) ->
         model.setMetaDefaults({
           layout: "body-std"
