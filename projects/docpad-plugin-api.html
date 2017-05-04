@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Docpad api plugin | UnivUnix Github projects</title>
+    <meta name="generator" content="DocPad v6.79.4" />    <link  rel="stylesheet" href="/styles/styles.css" /><link  rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-min.css" /><link  rel="stylesheet" href="/vendor/elegant_font/css/style.css" /><link  rel="stylesheet" href="/vendor/font-awesome/css/font-awesome-min.css" /><link  rel="stylesheet" href="/vendor/lightbox/ekko-lightbox-min.css" /><link  rel="stylesheet" href="/vendor/prism/prism.css" /><link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700" /></head>
+
+<body >
+    <div class="page-wrapper">
+    <!-- ******Header****** -->
+    <header id="header" class="header">
+        <div class="container">
+          <div class="branding">
+              <h1 class="logo">
+                <a href="/">
+                  <img src="/icons/logo2016.svg"/>
+                  <span>Univ</span><span class="text-bold">Unix</span> <span>Docs</span>
+                </a>
+              </h1>
+          </div><!--//branding-->
+          <ol class="breadcrumb">
+              <li><a href="http://software.univunix.com/">Home</a></li><li class="active">Docpad api plugin</li>          </ol>
+        </div><!--//container-->
+    </header><!--//header-->
+    <div class="doc-wrapper">
+        <div class="container">
+            <div id="doc-header" class="doc-header text-center">
+                <h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Docpad api plugin</h1>
+                <div class="meta">
+                  <i class="fa fa-clock-o"></i>
+                  Last updated:
+                  <time datetime="2017-05-04">
+                    Thursday, May 4, 2017 3:55 PM                  </time>
+                </div>
+            </div><!--//doc-header-->
+            <div class="doc-body">
+                <div class="doc-content">
+                    <div class="content-inner">
+                        <!-- BADGES/ -->
+<p><span class="badge-travisci"><a href="http://travis-ci.org/UnivUnix/docpad-plugin-api" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/UnivUnix/docpad-plugin-api/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/docpad-plugin-api" title="View this project on NPM"><img src="https://img.shields.io/npm/v/docpad-plugin-api.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/docpad-plugin-api" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/docpad-plugin-api.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/UnivUnix/docpad-plugin-api" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/UnivUnix/docpad-plugin-api.svg" alt="Dependency Status" /></a></span>
+<span class="badge-daviddmdev"><a href="https://david-dm.org/UnivUnix/docpad-plugin-api#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/UnivUnix/docpad-plugin-api.svg" alt="Dev Dependency Status" /></a></span></p>
+<!-- /BADGES -->
+<h2 id="-warning-breaking-changes-in-version-2-2-x-"><strong>Warning: Breaking changes in version 2.2.x</strong></h2>
+<p>Due to changes on the file loading system, the configuration of the api created for this plugin needs some modifications. The new way is explained next.</p>
+<p>Sorry for the inconvenience.</p>
+<p>Also, if you have any problem, question or improvement, issues will be welcomed.</p>
+<!-- INSTALL/ -->
+<h2 id="installation">Installation</h2>
+<p>Install this DocPad plugin by entering <code>docpad install api</code> into your terminal.</p>
+<p>Also you can install it using npm: <code>npm install docpad-plugin-api[@latest, @alpha, @beta, @&quot;version&quot;]</code></p>
+<!-- /INSTALL -->
+<h2 id="configuration">Configuration</h2>
+<h3 id="for-plugin-version-2-2-x">For plugin version 2.2.x</h3>
+<p>First, create your API. You have to use Javascript as language
+ and you can use NodeJS or ExpressJS methods and objects.</p>
+<p>Each Javascript file must have this structure:</p>
+<pre><code class="lang-javascript">// Each module.exports MUST BE a function with these two arguments
+module.exports = function (opts, baseApiUrl){
+  // The ExpressJS server is an attribute of opts.
+  var server = opts.server
+
+  // You can use ExpressJS functions (version 3.x)
+  server.get(baseApiUrl + &#39;/test&#39;, function (req, res, next) {
+    return res.json({
+      test: &#39;OK&#39;
+    })
+  })
+
+  server.get(&#39;/bbbb&#39;, function (req, res, next) {
+    var err = new Error()
+    next(err)
+  })
+}
+</code></pre>
+<p>Second, you need to create the api configuration file. It&#39;s in JSON format.
+This is the new step for newer versions, because you can set different apis using multiple configuration files.</p>
+<p>You can name it as you want. In my case, I call it &quot;dpaconfig.json&quot;</p>
+<pre><code class="lang-javascript">{
+  &quot;baseApiUrl&quot;: &quot;/testone&quot;,
+  &quot;src&quot;: [
+    &quot;testapi1/src/test11.js&quot;,
+    &quot;testapi1/src/test12.js&quot;
+  ]
+}
+</code></pre>
+<p>Notes about dbaconfig.json file:</p>
+<ul>
+<li>It&#39;s required to set the baseApiUrl and src variables.</li>
+<li>The src routes have to be relative to Docpad website root folder (the same level as docpad configuration file).</li>
+</ul>
+<p>Finally, set the route of each dpaconfig file in Docpad configuration file.</p>
+<pre><code class="lang-coffee-script">plugins:
+  api:
+    cfgSrc: [
+      &#39;testapi1/dpaconfig.json&#39;,
+      &#39;testapi2/dpaconfig.json&#39;,
+      &#39;testapi0/dpaconfig.json&#39;
+    ]
+</code></pre>
+<p>Notes about configuration:
+ *You have to set relative routes using Docpad root folder as base.</p>
+<p>And we&#39;re done. Enjoy your custom api without refactoring to ExpressJS.</p>
+<h3 id="for-previous-plugin-versions-deprecated-">For previous plugin versions (Deprecated)</h3>
+<ul>
+<li>First, you need to create a Javascript file inside your Docpad project.
+You must create that as a NodeJS module. Check the next example:</li>
+</ul>
+<pre><code class="lang-javascript">module.exports = function (opts, baseApiUrl) {
+  var server = opts.server
+
+  server.get(baseApiUrl + &#39;/test&#39;, function (req, res, next) {
+    return res.json({
+      test: &#39;OK&#39;
+    })
+  })
+
+  server.get(baseApiUrl + &#39;/bbbb&#39;, function (req, res, next) {
+    var err = new Error()
+    next(err)
+  })
+}
+</code></pre>
+<ul>
+<li>Finally, you have to put the path of the file in Docpad configuration file:</li>
+</ul>
+<pre><code class="lang-coffee-script"># DocPad Configuration File
+# http://docpad.org/docs/config
+
+# Define the DocPad Configuration
+docpadConfig = {
+  # Plugins configuration
+  plugins:
+    api:
+      baseApiUrl: &#39;/APIURLTEST&#39;
+      source: [
+        file: &#39;api/api-test.js&#39;
+        ]
+}
+
+# Export the DocPad Configuration
+module.exports = docpadConfig
+</code></pre>
+<!-- HISTORY/ -->
+<h2>History</h2>
+
+<p><a href="https://github.com/UnivUnix/docpad-plugin-api/blob/master/HISTORY.md#files">Discover the release history by heading on over to the <code>HISTORY.md</code> file.</a></p>
+<!-- /HISTORY -->
+<!-- CONTRIBUTE/ -->
+<h2>Contribute</h2>
+
+<p><a href="https://github.com/UnivUnix/docpad-plugin-api/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a></p>
+<!-- /CONTRIBUTE -->
+<!-- BACKERS/ -->
+<h2>Backers</h2>
+
+<h3>Maintainers</h3>
+
+<p>These amazing people are maintaining this project:</p>
+<ul><li><a href="http://www.univunix.com">Ángel González</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=Aglezabad" title="View the GitHub contributions of Ángel González on repository UnivUnix/docpad-plugin-api">view contributions</a></li></ul>
+
+<h3>Contributors</h3>
+
+<p>These amazing people have contributed code to this project:</p>
+<ul><li><a href="http://balupton.com">Benjamin Lupton</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=balupton" title="View the GitHub contributions of Benjamin Lupton on repository UnivUnix/docpad-plugin-api">view contributions</a></li>
+<li><a href="http://mdm.cc">Michael Duane Mooring</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=mikeumus" title="View the GitHub contributions of Michael Duane Mooring on repository UnivUnix/docpad-plugin-api">view contributions</a></li>
+<li><a href="http://robloach.net">Rob Loach</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=RobLoach" title="View the GitHub contributions of Rob Loach on repository UnivUnix/docpad-plugin-api">view contributions</a></li>
+<li><a href="https://github.com/vsopvsop">vsopvsop</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=vsopvsop" title="View the GitHub contributions of vsopvsop on repository UnivUnix/docpad-plugin-api">view contributions</a></li>
+<li><a href="http://www.univunix.com">Ángel González</a> — <a href="https://github.com/UnivUnix/docpad-plugin-api/commits?author=Aglezabad" title="View the GitHub contributions of Ángel González on repository UnivUnix/docpad-plugin-api">view contributions</a></li></ul>
+
+<p><a href="https://github.com/UnivUnix/docpad-plugin-api/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a></p>
+<!-- /BACKERS -->
+<!-- LICENSE/ -->
+<h2>License</h2>
+
+<p>Unless stated otherwise all works are:</p>
+<ul><li>Copyright &copy; <a href="http://univunix.com">UnivUnix</a></li></ul>
+
+<p>and licensed under:</p>
+<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+<!-- /LICENSE -->                    </div><!--//content-inner-->
+                </div><!--//doc-content-->
+                <div class="doc-sidebar">
+                    <nav id="doc-nav">
+                        <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
+                            <!--<li><a class="scrollto" href="#dashboards">Dashboards</a></li>
+                            <li>
+                                <a class="scrollto" href="#app-components">App Components</a>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#projects">Projects</a></li>
+                                    <li><a class="scrollto" href="#discussions">Discussions</a></li>
+                                    <li><a class="scrollto" href="#members">Members</a></li>
+                                    <li><a class="scrollto" href="#account">User Account</a></li>
+                                    <li><a class="scrollto" href="#others">Others</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="scrollto" href="#ui-components">UI Components</a></li>-->
+                        </ul>
+                    </nav>
+                </div><!--//doc-sidebar-->
+            </div><!--//doc-body-->
+        </div><!--//container-->
+    </div><!--//doc-wrapper-->
+</div><!--//page-wrapper-->
+
+<footer id="footer" class="footer text-center">
+    <div class="container">
+        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+
+    </div><!--//container-->
+</footer><!--//footer-->    <script defer="defer"  src="/vendor/jquery-min.js"></script><script defer="defer"  src="/vendor/bootstrap/js/bootstrap-min.js"></script><script defer="defer"  src="/vendor/jquery-scrollTo/jquery-scrollTo-min.js"></script><script defer="defer"  src="/vendor/jquery-match-height/jquery-matchHeight-min.js"></script><script defer="defer"  src="/vendor/lightbox/ekko-lightbox-min.js"></script><script defer="defer"  src="/vendor/prism/prism-min.js"></script><script defer="defer"  src="/scripts/main.js"></script></body>
+</html>
